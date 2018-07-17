@@ -1,35 +1,23 @@
 # Bitbucket Pull Request
 
-## Command line interface
-
-### Create Pull Request
-
-```bash
-BITBUCKET_PULLREQUEST_USER=luislobo BITBUCKET_PULLREQUEST_PASSWORD=your_app_password \
-bitbucket-pull-request-cli \
- create \
- --title "Pull Req Title"  \
- --description "Some test pull \nrequest description" \
- --repositoryUser "luislobo" \
- --repositoryName "bitbucket-pull-request-test" \
- --sourceBranch "test_branch" \
- --destinationBranch "master"
-```
-
 ## Module
 
 ```javascript
-const bpr = require('bitbucket-pull-request')
+const bpr = require('bitbucket-pr')
+```
+
+```javascript
+import {create, get, approve, decline} from 'bitbucket-pr'
 ```
 
 ### Create
 
 ```javascript
  let result = await bpr.create(
-    'luislobo', // repository user
-    'bitbucket-pull-request-test', // repository name
-    'some title', // title
-    'some big description\ncomes here', // description
+    'repositoryOwner', // repository user
+    'repositoryName', // repository name
+    'My first PR', // title
+    'This is my first pull request', // description
     'test_branch', // source branch
     'master' // destination branch
   )
@@ -38,9 +26,14 @@ const bpr = require('bitbucket-pull-request')
 ### Get
 
 ```javascript
- let result = await bpr.create(
-    'luislobo', // repository user
-    'bitbucket-pull-request-test'
+ let result = await bpr.get(
+   'mybitbucketusername', // repository user
+   'myrepository', // repository name
+   '1', //pullrequest ID , optional !
+   {
+     user: 'mybitbucketusername',
+     password: 'mybitbucketpassword'
+   }
   )
 ```
 
