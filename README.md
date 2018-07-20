@@ -7,19 +7,22 @@ const bpr = require('bitbucket-pr')
 ```
 
 ```javascript
-import {create, get, approve, decline} from 'bitbucket-pr'
+import bpr from 'bitbucket-pr'
 ```
 
 ### Create
 
 ```javascript
  let result = await bpr.create(
-    'repositoryOwner', // repository user
-    'repositoryName', // repository name
+   'mybitbucketusername/myrepository', // repository
     'My first PR', // title
     'This is my first pull request', // description
     'test_branch', // source branch
-    'master' // destination branch
+    'master', // destination branch
+    {
+      user: 'mybitbucketusername',
+      password: 'mybitbucketpassword'
+    }
   )
 ```
 
@@ -27,8 +30,7 @@ import {create, get, approve, decline} from 'bitbucket-pr'
 
 ```javascript
  let result = await bpr.get(
-   'mybitbucketusername', // repository user
-   'myrepository', // repository name
+   'mybitbucketusername/myrepository', // repository
    '1', //pullrequest ID , optional !
    {
      user: 'mybitbucketusername',
@@ -40,16 +42,45 @@ import {create, get, approve, decline} from 'bitbucket-pr'
 ### Approve
 ```javascript
   result = await bpr.approve(
-    'luislobo',
-    'bitbucket-pull-request-test',
-    result.id
+    'mybitbucketusername/myrepository', // repository
+    '1', // PR id
+    {
+      user: 'mybitbucketusername',
+      password: 'mybitbucketpassword'
+    }
   )
 ```
 
 ### Decline
 ```javascript
   result = await bpr.decline(
-    'luislobo',
-    'bitbucket-pull-request-test',
-    result.id
-  )```
+    'mybitbucketusername/myrepository', // repository
+    '1', // PR id
+    {
+      user: 'mybitbucketusername',
+      password: 'mybitbucketpassword'
+    }
+  )
+```
+
+### getRepo
+```javascript
+  result = await bpr.getRepo(
+    'mybitbucketusername/myrepository', // repository
+    {
+      user: 'mybitbucketusername',
+      password: 'mybitbucketpassword'
+    }
+  )
+```
+
+### getUser
+```javascript
+  result = await bpr.getUser(
+    {
+      user: 'mybitbucketusername',
+      password: 'mybitbucketpassword'
+    }
+  )
+  //Returns user details , team permissions and repository permissions 
+```
