@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "Bitbucket API v2.0 wrapper for pull requests",
   "main": "/lib/index.js",
-  "bin": {
-    "bitbucket-pr": "bitbucket-pull-request-cli.js"
-  },
   "directories": {
     "lib": "lib",
     "test": "test"
